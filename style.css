@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
+:root {
+  --clr-prm: #2f3a42;
+  --clr-sec: #627583;
+  --clr-tri: #c4c4c4;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: rgb(109, 42, 42);
+}
+
+main {
+  height: 650px;
+  width: 300px;
+  font-family: "Ubuntu", sans-serif;
+  background-color: var(--clr-prm);
+  border-radius: 30px;
+  position: relative;
+}
+
+/* display section  */
+
+.display {
+  color: rgb(255, 255, 255);
+  position: relative;
+  overflow: hidden;
+  height: 200px;
+  border-top-left-radius: 30px;
+}
+
+.display img {
+  position: absolute;
+}
+
+.mainimg {
+  top: -69px;
+  left: -80px;
+  transform: rotate(80deg);
+}
+
+.display :is(h3, h1, h6) {
+  margin-left: 130px;
+}
+
+.display h3 {
+  margin-top: 30px;
+}
+
+/* data section */
+.data {
+  background-color: var(--clr-sec);
+  height: 500px;
+  width: 100%;
+  border-radius: 30px;
+  position: absolute;
+  top: 150px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* data current section  */
+.current {
+  height: 200px;
+  width: 100%;
+  /* background-color: #fff; */
+  display: grid;
+  grid-template-columns: 80px 80px 80px;
+  grid-template-rows: 80px 80px;
+  gap: 10px;
+  justify-content: center;
+  align-content: flex-end;
+}
+
+.info {
+  background-color: var(--clr-tri);
+  /* width: 80px;
+  height: 80px; */
+}
+
+.advice {
+  height: 80px;
+  width: 260px;
+  background-color: #fff;
+  margin-top: 20px;
+}
+
+/* chart section  */
+canvas {
+  background-color: #fff;
+  margin-top: 15px;
+}
