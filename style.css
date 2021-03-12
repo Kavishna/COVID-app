@@ -5,6 +5,8 @@
   --clr-tri: #c4c4c4;
 }
 
+/* https://codepen.io/luka-butina/pen/ZbeQzd */
+
 * {
   padding: 0;
   margin: 0;
@@ -50,10 +52,13 @@ main {
 
 .display :is(h3, h1, h6) {
   margin-left: 130px;
+  font-weight: 400;
+  color: #cecece;
 }
 
 .display h3 {
   margin-top: 30px;
+  margin-bottom: 10px;
 }
 
 /* data section */
@@ -84,19 +89,50 @@ main {
 
 .info {
   background-color: var(--clr-tri);
-  /* width: 80px;
-  height: 80px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.info h2 {
+  font-size: 20px;
+}
+.info p {
+  font-size: 10px;
+  margin-top: 4px;
 }
 
 .advice {
   height: 80px;
   width: 260px;
-  background-color: #fff;
+  background: linear-gradient(89.9deg, #e69368 15.66%, #ae4537 92.48%);
   margin-top: 20px;
+  overflow: hidden;
+  position: relative;
+}
+.advice img {
+  position: absolute;
+  right: 0;
+  margin-top: 2px;
+}
+.advice ul {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.advice ul li {
+  color: white;
+  font-size: 12px;
+  margin-left: 30px;
+  margin-top: 2px;
 }
 
 /* chart section  */
 canvas {
-  background-color: #fff;
+  background-color: var(--clr-tri);
   margin-top: 15px;
+  padding: 10px;
 }

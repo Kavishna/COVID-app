@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+
     <title>Stay Safe</title>
   </head>
   <body>
@@ -13,18 +14,28 @@
         <img class="mainimg" src="./images/virus.png" alt="virus vector" />
         <h3>COVID-19 Stauts</h3>
         <h1>Sri Lanka</h1>
-        <h6 class="last-updated">Last Updated 3 hours ago</h6>
+        <h6>Last Updated <span class="last-updated"></span> ago</h6>
       </div>
       <div class="data">
         <div class="current">
+          <!-- <div class="info">
+            <h2>234</h2>
+            <p>New Cases</p>
+          </div>
           <div class="info"></div>
           <div class="info"></div>
           <div class="info"></div>
           <div class="info"></div>
-          <div class="info"></div>
-          <div class="info"></div>
+          <div class="info"></div> -->
         </div>
-        <div class="advice"></div>
+        <div class="advice">
+          <img src="./images/doctor.svg" alt="" />
+          <ul>
+            <li>Wear a mask</li>
+            <li>Clean your hands</li>
+            <li>Maintain at least a 1-metre <br />distance</li>
+          </ul>
+        </div>
         <div class="chart">
           <canvas id="myChart" width="260" height="160"></canvas>
         </div>
