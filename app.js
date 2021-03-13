@@ -1,8 +1,22 @@
+//covid data section
 const current = document.querySelector(".current");
-const updated = document.querySelector("span");
+//time section
+const updated = document.querySelector("em");
+
+//chart canvas
 var ctx = document.getElementById("myChart").getContext("2d");
 
-// set current data
+//date
+const date = document.querySelector(".date");
+
+//loader
+const loader = document.querySelector(".preloader");
+
+window.addEventListener("load", (fadeout) => {
+  loader.classList.add("remove");
+});
+
+//fetch data
 const getData = async (url, callback) => {
   const response = await fetch(url);
   const data = await response.json();
@@ -10,7 +24,9 @@ const getData = async (url, callback) => {
   callback(data);
 };
 
+//set fetched data
 getData("https://hpb.health.gov.lk/api/get-current-statistical", (data) => {
+  //getting usefull data from returned object
   const {
     local_active_cases,
     local_deaths,
@@ -21,6 +37,9 @@ getData("https://hpb.health.gov.lk/api/get-current-statistical", (data) => {
     update_date_time,
   } = data.data;
 
+  console.log(update_date_time);
+
+  //   store data to array
   const covidData = [
     {
       title: "Active Cases",
@@ -48,11 +67,14 @@ getData("https://hpb.health.gov.lk/api/get-current-statistical", (data) => {
     },
   ];
 
-  updated.innerHTML = setDate(update_date_time);
+  //set updated time on display section
+  updated.innerHTML = setTime(update_date_time);
 
+  //set covid status
   setData(covidData, current);
 
-  setChart(covidData);
+  //set chart
+  setChart();
 });
 
 const setData = (array, element) => {
@@ -69,30 +91,23 @@ const setData = (array, element) => {
   });
 };
 
-const setDate = (updatedTime) => {
+const setTime = (updatedTime) => {
   const updatedHour = new Date(updatedTime).getHours();
-
   const today = new Date();
   const currentHour = today.getHours();
-  console.log(currentHour - updatedHour);
+
+  //setting mins if updated time less than hour
+  if (currentHour - updatedHour === 0) {
+    const updatedMin = new Date(updatedTime).getMinutes();
+    const currentMin = today.getMinutes();
+
+    return `${currentMin - updatedMin} mins`;
+  }
   return `${currentHour - updatedHour} hours`;
 };
 
-const setChart = (covidData) => {
-  covidData = covidData.filter((data) => {
-    if (data.title !== "Total Cases") {
-      return data;
-    }
-  });
-
-  const titles = covidData.map((data) => {
-    return data.title;
-  });
-
-  const counts = covidData.map((data) => {
-    return data.count;
-  });
-
+//setup chartjs
+const setChart = () => {
   var myChart = new Chart(ctx, {
     type: "line",
     data: {
@@ -100,21 +115,8 @@ const setChart = (covidData) => {
       datasets: [
         {
           label: "dummy data",
-          data: counts,
-          backgroundColor: [
-            "rgba(255, 99, 132, 1)",
-            "rgba(54, 162, 235, 1)",
-            "rgba(255, 206, 86, 1)",
-            "rgba(75, 192, 192, 1)",
-            "rgba(153, 102, 255, 1)",
-          ],
-          borderColor: [
-            "rgba(255, 99, 132, 1)",
-            "rgba(54, 162, 235, 1)",
-            "rgba(255, 206, 86, 1)",
-            "rgba(75, 192, 192, 1)",
-            "rgba(153, 102, 255, 1)",
-          ],
+          data: [200, 600, 2000, 300, 800],
+          backgroundColor: ["rgba(230, 147, 104,1)"],
           borderWidth: 1,
         },
       ],
@@ -122,3 +124,11 @@ const setChart = (covidData) => {
     options: {},
   });
 };
+
+const setDate = () => {
+  const today = new Date();
+
+  date.innerHTML = today.toDateString();
+};
+
+setDate();

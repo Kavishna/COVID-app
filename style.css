@@ -17,8 +17,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: rgb(109, 42, 42);
+  min-height: 100vh;
+  background-image: linear-gradient(to right top, #000428, #004e92);
+  overflow-x: scroll;
 }
 
 main {
@@ -28,6 +29,7 @@ main {
   background-color: var(--clr-prm);
   border-radius: 30px;
   position: relative;
+  box-shadow: rgba(10, 68, 95, 0.39) 0px 20px 30px;
 }
 
 /* display section  */
@@ -35,6 +37,7 @@ main {
 .display {
   color: rgb(255, 255, 255);
   position: relative;
+  top: 0;
   overflow: hidden;
   height: 200px;
   border-top-left-radius: 30px;
@@ -42,6 +45,7 @@ main {
 
 .display img {
   position: absolute;
+  object-fit: cover;
 }
 
 .mainimg {
@@ -50,7 +54,9 @@ main {
   transform: rotate(80deg);
 }
 
-.display :is(h3, h1, h6) {
+.display h3,
+h1,
+h6 {
   margin-left: 130px;
   font-weight: 400;
   color: #cecece;
@@ -59,6 +65,14 @@ main {
 .display h3 {
   margin-top: 30px;
   margin-bottom: 10px;
+}
+
+.date {
+  font-size: 12px;
+  margin-top: 16px;
+  margin-left: 130px;
+  font-weight: 400;
+  color: #cecece;
 }
 
 /* data section */
@@ -78,7 +92,6 @@ main {
 .current {
   height: 200px;
   width: 100%;
-  /* background-color: #fff; */
   display: grid;
   grid-template-columns: 80px 80px 80px;
   grid-template-rows: 80px 80px;
@@ -135,4 +148,108 @@ canvas {
   background-color: var(--clr-tri);
   margin-top: 15px;
   padding: 10px;
+}
+
+/* loading animation */
+.preloader {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    180deg,
+    var(--clr-prm) 15.66%,
+    var(--clr-sec) 92.48%
+  );
+  position: absolute;
+  z-index: 2;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.preloader h3 {
+  margin: 30px;
+  color: var(--clr-tri);
+  font-size: 30px;
+}
+.preloader p {
+  margin: 20px;
+  color: var(--clr-tri);
+}
+
+.remove {
+  animation: fadeout 1s forwards;
+}
+
+@keyframes fadeout {
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* loading animation from  */
+/* https://codepen.io/tashfene/pen/raEqrJ */
+
+.loader {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  border: 4px solid var(--clr-tri);
+  /* top: 50%; */
+  animation: loader 2s infinite ease;
+}
+
+.loader-inner {
+  vertical-align: top;
+  display: inline-block;
+  width: 100%;
+  background-color: var(--clr-tri);
+  animation: loader-inner 2s infinite ease-in;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(180deg);
+  }
+
+  50% {
+    transform: rotate(180deg);
+  }
+
+  75% {
+    transform: rotate(360deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loader-inner {
+  0% {
+    height: 0%;
+  }
+
+  25% {
+    height: 0%;
+  }
+
+  50% {
+    height: 100%;
+  }
+
+  75% {
+    height: 100%;
+  }
+
+  100% {
+    height: 0%;
+  }
 }
